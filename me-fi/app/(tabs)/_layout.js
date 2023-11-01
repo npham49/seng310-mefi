@@ -96,7 +96,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="journal"
         options={{
-          href: "/journal",
+          href: "journal",
           title: "Journal",
           tabBarActiveTintColor: "black",
           headerShown: true,
