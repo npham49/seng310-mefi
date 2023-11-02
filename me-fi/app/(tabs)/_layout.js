@@ -13,7 +13,7 @@ export default function TabsLayout() {
         tabBarStyle:
           Platform.OS === "ios"
             && {
-                backgroundColor: "transparent",
+                backgroundColor: "white",
               },
         headerShown: false,
       }}
@@ -99,7 +99,6 @@ export default function TabsLayout() {
           href: "journal",
           title: "Journal",
           tabBarActiveTintColor: "black",
-          headerShown: true,
           tabBarIcon: ({ focused,color }) => (
             <View
               style={{

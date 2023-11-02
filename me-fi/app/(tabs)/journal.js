@@ -5,7 +5,14 @@ import Upcoming from "../../components/journal/Upcoming";
 export default function Journal() {
   const [tab, setTab] = useState("journal");
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "top" }}>
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "top",
+        marginTop: 40,
+      }}
+    >
       <View style={styles.containerTabs}>
         <Pressable
           onPress={() => setTab("journal")}
@@ -34,7 +41,7 @@ export default function Journal() {
           </Text>
         </Pressable>
       </View>
-      <View>
+      <View style={{backgroundColor: "#eee", width:"100%", height:"100%" }}>
         {tab === "journal" ? <Upcoming /> : <Text>History</Text>}
       </View>
     </View>
