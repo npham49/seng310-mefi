@@ -10,14 +10,25 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {setActive, setOffline, setAlert} from "../../redux/status";
 import { useEffect, useState } from "react";
+import { Audio } from 'expo-av';
 
 const HelpModal = () => {
   const [countdown, setCountdown] = useState(60)
+  const [sound, setSound] = useState<any>();
   const status = useSelector((state: any) => state.status.value)
   const dispatch = useDispatch();
 
+  async function playSound() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync( require('../../assets/sounds/alert.mp3')
+    );
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
   useEffect(() => {
     if (status === "help") {
+      playSound()
       setCountdown(60)
       const interval = setInterval(() => {
         setCountdown((c) => c - 1)
@@ -32,13 +43,22 @@ const HelpModal = () => {
     }
   }, [countdown])
 
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
   return (
     <Modal
         animationType="fade"
         transparent={true}
         visible={status==="help"||status==="alert"}
         onBackgroundPress={() => {
-          dispatch(setOffline())
+          dispatch(setActive())
         }}
         onRequestClose={() => {
           dispatch(setActive())
@@ -98,7 +118,13 @@ const HelpModal = () => {
                 size={Button.sizes.large}
                 backgroundColor={Colors.red20}
                 onPress={() => {
-                  dispatch(setOffline());
+                  sound
+                  ? () => {
+                      console.log('Unloading Sound');
+                      sound.unloadAsync();
+                    }
+                  : undefined;
+                  dispatch(setActive());
                 } }
                 style={{
                   marginBottom: 10,

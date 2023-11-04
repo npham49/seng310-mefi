@@ -3,6 +3,8 @@ import { useState } from "react";
 import MapComponent from "../../components/map/Map";
 import HelpModal from "../../components/modals/Help";
 import { useSelector } from 'react-redux'
+import StateSetterModal from "../../components/modals/StateSetter";
+import AssisstModal from "../../components/modals/Assist";
 
 export default function Map() {
   const [tab, setTab] = useState("map");
@@ -16,6 +18,8 @@ export default function Map() {
         marginTop: 40,
       }}
     >
+      <StateSetterModal />
+      <AssisstModal />
       <HelpModal />
       <View style={styles.containerTabs}>
         <Pressable

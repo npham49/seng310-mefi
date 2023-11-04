@@ -5,7 +5,7 @@ import { Link } from "expo-router";
 
 export default function Login() {
   const [email, setEmail] = React.useState("");
-  const [number, setPass] = React.useState("");
+  const [pass, setPass] = React.useState("");
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

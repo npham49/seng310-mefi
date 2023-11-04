@@ -10,6 +10,8 @@ import {
   Text,
   Modal,
 } from "react-native-ui-lib";
+import { useDispatch } from "react-redux";
+import { setIdle } from "../../redux/status";
 
 const cardImage = require("../../assets/content.png");
 
@@ -46,6 +48,8 @@ const Upcoming = () => {
     description: "",
     location: ""
   });
+  const dispatch = useDispatch();
+
   return (
     <>
       <Modal
@@ -115,6 +119,7 @@ const Upcoming = () => {
                 backgroundColor={Colors.grey1}
                 onPress={() => {
                   setIsVisible(false);
+                  dispatch(setIdle());
                 } 
                 }
                 style={{

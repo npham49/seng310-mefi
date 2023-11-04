@@ -1,36 +1,48 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const statusSlice = createSlice({
-  name: 'status',
+  name: "status",
   initialState: {
-    value: "offline"
+    value: "offline",
   },
   reducers: {
     setIdle: (state) => {
-      state.value = "idle"
+      state.value = "idle";
     },
     setHelp: (state) => {
-      state.value = "help"
+      state.value = "help";
     },
     setAlert: (state) => {
-      state.value = "alert"
+      state.value = "alert";
     },
     setProximityAlert: (state) => {
-      state.value = "proximityAlert"
+      state.value = "proximityAlert";
     },
-    setActive:  (state) => {
-      state.value = "active"
+    setActive: (state) => {
+      state.value = "active";
     },
     setAssist: (state) => {
-      state.value = "assist"
+      state.value = "assist";
     },
     setOffline: (state) => {
-      state.value = "offline"
+      state.value = "offline";
+    },
+    setOpenControl: (state) => {
+      state.value = "openControl";
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setIdle, setHelp, setProximityAlert, setAlert, setActive, setAssist,setOffline } = statusSlice.actions
+export const {
+  setIdle,
+  setHelp,
+  setProximityAlert,
+  setAlert,
+  setActive,
+  setAssist,
+  setOffline,
+  setOpenControl,
+} = statusSlice.actions;
 
-export default statusSlice.reducer
+export default statusSlice.reducer;
