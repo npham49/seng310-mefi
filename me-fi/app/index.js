@@ -4,8 +4,8 @@ import { TextField, Text, Button, Colors } from "react-native-ui-lib";
 import { Link } from "expo-router";
 
 export default function Login() {
-  const [email, onChangeEmail] = React.useState("");
-  const [number, onChangePass] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [number, setPass] = React.useState("");
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -17,7 +17,7 @@ export default function Login() {
         <View style={{ flexDirection: "column", width: "100%" }}>
         <TextField
           placeholder={"Email"}
-          onChangeText={onChangeEmail}
+          onChangeText={setEmail}
           containerStyle={{ length: "70%" }}
           enableErrors
           label="Email"
@@ -31,7 +31,7 @@ export default function Login() {
         />
         <TextField
           placeholder={"Password"}
-          onChangeText={onChangePass}
+          onChangeText={setPass}
 
           containerStyle={{ length: "70%", marginBottom: 50 }}
           enableErrors

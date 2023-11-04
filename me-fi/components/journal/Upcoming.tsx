@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Pressable, Alert } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import {
   Colors,
   Image,

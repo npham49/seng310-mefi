@@ -77,7 +77,6 @@ export default function TabsLayout() {
           href: "/map",
           title: "Map",
           tabBarActiveTintColor: "black",
-          headerShown: true,
           tabBarIcon: ({ focused,color }) => (
             <View
               style={{
