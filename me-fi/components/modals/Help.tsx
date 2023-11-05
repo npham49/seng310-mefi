@@ -14,14 +14,14 @@ import { Audio } from 'expo-av';
 
 const HelpModal = () => {
   const [countdown, setCountdown] = useState(60)
-  const [sound, setSound] = useState<any>();
+  const [sound, setSound] = useState(new Audio.Sound());
   const status = useSelector((state: any) => state.status.value)
   const dispatch = useDispatch();
 
   async function playSound() {
     console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync( require('../../assets/sounds/alert.mp3')
-    );
+    const { sound } = await Audio.Sound.createAsync(require('../../assets/sounds/alert.mp3'))
+    setSound(sound);
     console.log('Playing Sound');
     await sound.playAsync();
   }
@@ -43,26 +43,11 @@ const HelpModal = () => {
     }
   }, [countdown])
 
-  useEffect(() => {
-    return sound
-      ? () => {
-          console.log('Unloading Sound');
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
-
   return (
     <Modal
         animationType="fade"
         transparent={true}
         visible={status==="help"||status==="alert"}
-        onBackgroundPress={() => {
-          dispatch(setActive())
-        }}
-        onRequestClose={() => {
-          dispatch(setActive())
-        }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -117,13 +102,9 @@ const HelpModal = () => {
                 labelStyle={{ fontSize: 20, fontWeight: "bold" }}
                 size={Button.sizes.large}
                 backgroundColor={Colors.red20}
-                onPress={() => {
-                  sound
-                  ? () => {
-                      console.log('Unloading Sound');
-                      sound.unloadAsync();
-                    }
-                  : undefined;
+                onPress={async () => {
+                  console.log('Unloading Sound');
+                  await sound.unloadAsync()
                   dispatch(setActive());
                 } }
                 style={{

@@ -1,12 +1,30 @@
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
 import { Colors, View, Button, Text, Modal } from "react-native-ui-lib";
+import { Audio } from 'expo-av';
+
 import { useDispatch, useSelector } from "react-redux";
 import { setActive, setAssist } from "../../redux/status";
+import { useEffect, useState } from "react";
 
 const AssisstModal = () => {
   const status = useSelector((state: any) => state.status.value);
+  const [sound, setSound] = useState(new Audio.Sound());
   const dispatch = useDispatch();
+
+  async function playSound() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync(require('../../assets/sounds/alert.mp3'))
+    setSound(sound);
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    if (status === "proximityAlert") {
+      playSound()
+    }
+  }, [status])
 
   return (
     <Modal
@@ -53,7 +71,9 @@ const AssisstModal = () => {
               labelStyle={{ fontSize: 20, fontWeight: "bold" }}
               size={Button.sizes.large}
               backgroundColor={Colors.red20}
-              onPress={() => {
+              onPress={async () => {
+                console.log('Unloading Sound');
+                await sound.unloadAsync()
                 dispatch(setAssist());
               }}
               style={{
@@ -69,7 +89,9 @@ const AssisstModal = () => {
               labelStyle={{ fontSize: 20, fontWeight: "bold" }}
               size={Button.sizes.large}
               backgroundColor={Colors.red20}
-              onPress={() => {
+              onPress={async () => {
+                console.log('Unloading Sound');
+                await sound.unloadAsync()
                 dispatch(setActive());
               }}
               style={{

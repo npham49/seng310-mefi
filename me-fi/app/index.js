@@ -18,6 +18,9 @@ export default function Login() {
         <TextField
           placeholder={"Email"}
           onChangeText={setEmail}
+          autoCapitalize="none"
+          autoComplete="email"
+          inputMode="email"
           containerStyle={{ length: "70%" }}
           enableErrors
           label="Email"
@@ -32,7 +35,8 @@ export default function Login() {
         <TextField
           placeholder={"Password"}
           onChangeText={setPass}
-
+          autoCapitalize="none"
+          secureTextEntry={true}
           containerStyle={{ length: "70%", marginBottom: 50 }}
           enableErrors
           label="Password"
