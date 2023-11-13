@@ -135,6 +135,18 @@ const Upcoming = () => {
         </View>
       </Modal>
       <View centerH flex marginV-10 >
+                {/* createa a new trip button */}
+        <Button
+          label={"Create a new trip"}
+          size={Button.sizes.large}
+          backgroundColor={Colors.grey1}
+          style={{
+            marginBottom: 10,
+            borderRadius: 10,
+            width: "90%",
+            alignSelf: "center",
+          }}
+        />
         {data.map((item: any, index) => {
           return (
             <Card

@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useState } from "react";
 import Upcoming from "../../components/journal/Upcoming";
+import History from "../../components/journal/History";
 
 export default function Journal() {
   const [tab, setTab] = useState("journal");
@@ -42,7 +43,7 @@ export default function Journal() {
         </Pressable>
       </View>
       <View style={{backgroundColor: "#eee", width:"100%", height:"100%" }}>
-        {tab === "journal" ? <Upcoming /> : <Text>History</Text>}
+        {tab === "journal" ? <Upcoming /> : <History />}
       </View>
     </View>
   );

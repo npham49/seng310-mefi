@@ -2,8 +2,12 @@ import { View, SafeAreaView } from "react-native";
 import React from "react";
 import { TextField, Text, Button, Colors } from "react-native-ui-lib";
 import { Link } from "expo-router";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/user";
 
 export default function Login() {
+  // access redux store to set user name
+  const dispatch = useDispatch();
   const [email, setEmail] = React.useState("");
   const [pass, setPass] = React.useState("");
 
@@ -57,6 +61,9 @@ export default function Login() {
               label={"Login"}
               size={Button.sizes.large}
               backgroundColor={Colors.grey1}
+              onPress={() => {
+                dispatch(login(email));
+              }}
             />
           </Link>
           <Link href="/signup" asChild>
