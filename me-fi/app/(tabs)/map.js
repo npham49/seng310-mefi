@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useState } from "react";
 import MapComponent from "../../components/map/Map";
+import InfoComponent from "../../components/map/Info";
 import HelpModal from "../../components/modals/Help";
 import { useSelector } from 'react-redux'
 import StateSetterModal from "../../components/modals/StateSetter";
@@ -50,7 +51,7 @@ export default function Map() {
         </Pressable>
       </View>
       <View style={{backgroundColor: "#eee", width:"100%", height:"100%" }}>
-        {tab === "map" ? <MapComponent /> : <Text>{status}</Text>}
+        {tab === "map" ? <MapComponent /> : <InfoComponent />}
       </View>
     </View>
   );
